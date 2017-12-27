@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ThemCEOS.Windows.Them">
+    <Style TargetType="TextBox" x:Key="VNA_TextBox">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Height" Value="60"></Setter>
+        <Setter Property="Width" Value="150"></Setter>
+        <Setter Property="Foreground" Value="Purple"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="IsReadOnly" Value="False"></Setter>
+        <Setter Property="IsEnabled" Value="True"></Setter>
+        <Setter Property="IsTabStop" Value="True"></Setter>
+        <Setter Property="IsUndoEnabled" Value="True"></Setter>
+        <Setter Property="MaxLines" Value="3"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+    </Style>
+    <Style TargetType="ScrollViewer" x:Key="VNA_ScrollViewer">
+        <Setter Property="CanContentScroll" Value="True"></Setter>
+        <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Visible"></Setter>
+    </Style>
+</ResourceDictionary>

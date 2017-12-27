@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ThemCEOS.Windows.Them">
+
+    <Style x:Key="HeaderFooterWindowStyle" TargetType="Window">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Body -->
+                        <ContentPresenter Grid.Row="0"/>
+
+                        <!-- Footer -->
+                        <Border Grid.Row="1" Background="#1111">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/logo.png" Height="20" Width="20"/>
+                                <TextBlock Text="CEOS Windows" Margin="5, 0, 0, 0" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
