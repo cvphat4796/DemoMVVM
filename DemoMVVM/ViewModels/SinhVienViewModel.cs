@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace DemoMVVM.ViewModels
 {
@@ -203,6 +204,7 @@ namespace DemoMVVM.ViewModels
             ListDay = GetDateTime.GetListDay();
             ListMonth = GetDateTime.GetListMonth();
             ListYear = GetDateTime.GetListYear();
+            Button n = new Button();
         }
 
 
@@ -271,16 +273,23 @@ namespace DemoMVVM.ViewModels
         }
 
         //Sự kiện change Text
-        public void txtID_TextChanged(EventArgs e)
+        public void txtID_TextChanged(object s, EventArgs e)
         {
 
 
         }
 
         //Sự kiện change Text
-        public void txtName_TextChanged( EventArgs e)
+        public void txtName_TextChanged(object s, EventArgs e)
         {
 
+
+        }
+
+        public void StackPanel_Initialized(object s, EventArgs e)
+        {
+            StackPanel st = s as StackPanel;
+            st.Children.Add(new Button {Content="tao day" });
 
         }
 
