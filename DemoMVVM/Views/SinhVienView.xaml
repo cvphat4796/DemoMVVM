@@ -13,7 +13,7 @@
        
         >
 
-    <StackPanel cal:Message.Attach="[Event Loaded] = [Action StackPanel_Initialized($source,$eventArgs)]" >
+    <StackPanel >
         <DockPanel Margin="0, 5, 0, 0">
             <TextBlock Text="Mã Sinh Viên: "/>
             <TextBox Name="txtID" Text="{Binding Path=SelectedSV.Id}" >
@@ -102,5 +102,15 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <DataGrid ItemsSource="{Binding Path=ListSinhVien}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+            </DataGrid.Columns>
+          
+        </DataGrid>
+        <Grid cal:Message.Attach="[Event Loaded] = [Action Grid_Initialized($source,$eventArgs)]" >
+            
+        </Grid>
     </StackPanel>
 </Window>

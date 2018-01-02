@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Windows.Media;
 
 namespace DemoMVVM.ViewModels
 {
@@ -286,10 +289,156 @@ namespace DemoMVVM.ViewModels
 
         }
 
-        public void StackPanel_Initialized(object s, EventArgs e)
+        public void Grid_Initialized(object s, EventArgs e)
         {
-            StackPanel st = s as StackPanel;
-            st.Children.Add(new Button {Content="tao day" });
+            Grid st = s as Grid;
+            //Type t =typeof(SinhVien);
+            //MemberInfo[] memberArray = t.GetProperties();
+            //for(int col =0;col < memberArray.Count(); col++)
+            //{
+            //    ColumnDefinition colTemp = new ColumnDefinition();
+            //    st.ColumnDefinitions.Add(colTemp);
+            //    RowDefinition rowTemp = new RowDefinition();
+            //    st.RowDefinitions.Add(rowTemp);
+            //    TextBlock headTemp = new TextBlock();
+            //  //  headTemp.Text = attributes[col].ToString();
+            //}
+            //ColumnDefinition col1 = new ColumnDefinition();
+            //col1.Width = new GridLength(45);
+            //ColumnDefinition col2 = new ColumnDefinition();
+            //col1.Width = new GridLength(105);
+            //RowDefinition row1 = new RowDefinition();
+            //row1.Height = new GridLength(45);
+            //RowDefinition row2 = new RowDefinition();
+            //row2.Height = new GridLength(45);
+            //st.ColumnDefinitions.Add(col1);
+            //st.ColumnDefinitions.Add(col2);
+            //st.RowDefinitions.Add(row1);
+            //st.RowDefinitions.Add(row2);
+            //TextBlock txtID = new TextBlock();
+            //txtID.Text = "ID";
+
+            //TextBlock txtName = new TextBlock();
+            //txtName.Text = "Name";
+            //st.Children.Add(txtID);
+            //st.Children.Add(txtName);
+            //for (int row = 0; row < ListSinhVien.Count; row++)
+            //{
+
+            //}
+
+            #region add gird
+            // Create the Grid
+            Grid DynamicGrid = s as Grid;
+            DynamicGrid.Width = 400;
+            DynamicGrid.HorizontalAlignment = HorizontalAlignment.Left;
+            DynamicGrid.VerticalAlignment = VerticalAlignment.Top;
+
+            // Create Columns
+            ColumnDefinition gridCol1 = new ColumnDefinition();
+            ColumnDefinition gridCol2 = new ColumnDefinition();
+            ColumnDefinition gridCol3 = new ColumnDefinition();
+            DynamicGrid.ColumnDefinitions.Add(gridCol1);
+            DynamicGrid.ColumnDefinitions.Add(gridCol2);
+            DynamicGrid.ColumnDefinitions.Add(gridCol3);
+
+            // Create Rows
+            RowDefinition gridRow1 = new RowDefinition();
+            gridRow1.Height = new GridLength(45);
+            RowDefinition gridRow2 = new RowDefinition();
+            gridRow2.Height = new GridLength(45);
+            RowDefinition gridRow3 = new RowDefinition();
+            gridRow3.Height = new GridLength(45);
+            DynamicGrid.RowDefinitions.Add(gridRow1);
+            DynamicGrid.RowDefinitions.Add(gridRow2);
+            DynamicGrid.RowDefinitions.Add(gridRow3);
+
+            // Add first column header
+            TextBlock txtBlock1 = new TextBlock();
+            txtBlock1.Text = "ID";
+            txtBlock1.FontSize = 14;
+            txtBlock1.FontWeight = FontWeights.Bold;
+            txtBlock1.Foreground = new SolidColorBrush(Colors.Green);
+            txtBlock1.VerticalAlignment = VerticalAlignment.Top;
+            Grid.SetRow(txtBlock1, 0);
+            Grid.SetColumn(txtBlock1, 0);
+
+            // Add second column header
+            TextBlock txtBlock2 = new TextBlock();
+            txtBlock2.Text = "Name";
+            txtBlock2.FontSize = 14;
+            txtBlock2.FontWeight = FontWeights.Bold;
+            txtBlock2.Foreground = new SolidColorBrush(Colors.Green);
+            txtBlock2.VerticalAlignment = VerticalAlignment.Top;
+            Grid.SetRow(txtBlock2, 0);
+            Grid.SetColumn(txtBlock2, 1);
+
+            // Add third column header
+            TextBlock txtBlock3 = new TextBlock();
+            txtBlock3.Text = "Lop";
+            txtBlock3.FontSize = 14;
+            txtBlock3.FontWeight = FontWeights.Bold;
+            txtBlock3.Foreground = new SolidColorBrush(Colors.Green);
+            txtBlock3.VerticalAlignment = VerticalAlignment.Top;
+            Grid.SetRow(txtBlock3, 0);
+            Grid.SetColumn(txtBlock3, 2);
+
+            //// Add column headers to the Grid
+            DynamicGrid.Children.Add(txtBlock1);
+            DynamicGrid.Children.Add(txtBlock2);
+            DynamicGrid.Children.Add(txtBlock3);
+
+            for(int row = 0; row < ListSinhVien.Count; row++)
+            {
+                TextBlock authorText = new TextBlock();
+                authorText.Text = ListSinhVien[row].Id;
+                authorText.FontSize = 12;
+                authorText.FontWeight = FontWeights.Bold;
+                Grid.SetRow(authorText, 1);
+                Grid.SetColumn(authorText, 0);
+
+
+
+                TextBlock ageText = new TextBlock();
+                ageText.Text = ListSinhVien[row].Name;
+                ageText.FontSize = 12;
+                ageText.FontWeight = FontWeights.Bold;
+                Grid.SetRow(ageText, 1);
+                Grid.SetColumn(ageText, 1);
+
+                Button btnLop = new Button();
+                btnLop.Content = ListSinhVien[row].Lop.Name;
+                btnLop.FontSize = 12;
+                btnLop.FontWeight = FontWeights.Bold;
+                Grid.SetRow(btnLop, 1);
+                Grid.SetColumn(btnLop, 2);
+                TextBox txtLop = new TextBox();
+                txtLop.Text = ListSinhVien[row].Name;
+                txtLop.FontSize = 12;
+                txtLop.FontWeight = FontWeights.Bold;
+                txtLop.Visibility = Visibility.Hidden;
+
+                btnLop.Click += btn1_Click;
+                Grid.SetRow(txtLop, 1);
+                Grid.SetColumn(txtLop, 2);
+                
+                // Add first row to Grid
+                DynamicGrid.Children.Add(authorText);
+                DynamicGrid.Children.Add(ageText);
+                DynamicGrid.Children.Add(btnLop);
+
+            }
+
+            
+
+           
+            #endregion
+
+        }
+
+        private void btn1_Click(object sender, RoutedEventArgs e)
+        {
+            
 
         }
 
